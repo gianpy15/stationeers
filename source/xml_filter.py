@@ -1,9 +1,9 @@
 import xml.etree.ElementTree as ET
 
 
-world = '../resources/Stationeers/world.xml'
-world_new = '../resources/Stationeers/world_new.xml'
-item_to_remove = 'ItemIronOre'
+world = '../resources/world.xml'
+world_new = '../resources/world_new.xml'
+item_to_remove = ['ItemIronOre', 'ItemCopperOre', 'ItemGoldOre']
 
 if __name__ == '__main__':
     tree = ET.parse(world)
@@ -15,7 +15,7 @@ if __name__ == '__main__':
     for thingSaveData in things.findall('.//ThingSaveData'):
         item = thingSaveData.find('.//PrefabName').text
         items += 1
-        if item == item_to_remove:
+        if item in item_to_remove:
             things.remove(thingSaveData)
             to_remove += 1
 
